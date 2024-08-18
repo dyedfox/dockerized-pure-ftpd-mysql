@@ -5,6 +5,9 @@ For detailed Pure-ftpd documentation, refer to:
 - https://linux.die.net/man/8/pure-ftpd
 - https://www.pureftpd.org/project/pure-ftpd/doc/
 
+# Docker hub link
+https://hub.docker.com/repository/docker/slavko7/pure-ftpd-mysql/general
+
 ## Docker Command
 
 ```bash
