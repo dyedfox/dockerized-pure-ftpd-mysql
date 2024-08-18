@@ -19,7 +19,7 @@ docker run -d \
   --restart always \
   --log-driver syslog \
   --name pure-ftpd-mysql \
-  pure-ftpd-mysql:latest
+  slavko7/pure-ftpd-mysql:latest
 ```
 
 ## Docker Compose
