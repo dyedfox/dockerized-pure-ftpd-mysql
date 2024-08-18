@@ -54,12 +54,12 @@ See `docker-compose.yaml`
 User 1
 ```sql
 INSERT INTO `users` (`User`, `Password`, `Uid`, `Gid`, `Dir`)
-VALUES ('ftpuser1', 'zara2stra2107', '1004', '1004', '/home/ftpdata/ftpuser1');
+VALUES ('ftpuser1', 'superSecretP4as$word', '1004', '1004', '/home/ftpdata/ftpuser1');
 ```
 User 2
 ```sql
 INSERT INTO `users` (`User`, `Password`, `Uid`, `Gid`, `Dir`)
-VALUES ('ftpuser2', 'zara2stra2107', '1004', '1004', '/home/ftpdata/ftpuser2');
+VALUES ('ftpuser2', 'superSecretP4as$word', '1004', '1004', '/home/ftpdata/ftpuser2');
 ```
 
 ### Note
@@ -88,7 +88,7 @@ drwxr-xr-x 2 1001 1001 4.0K Aug 10 09:00 ftpuser2
 ```sql
 DELETE FROM `users`
 WHERE `User` = 'ftpuser1'
-  AND `Password` = 'zara2stra2107'
+  AND `Password` = 'sUperSecretP4as$word'
   AND `Uid` = '1004'
   AND `Gid` = '1004'
   AND `Dir` = '/home/ftpdata/ftpuser1';
@@ -97,7 +97,7 @@ WHERE `User` = 'ftpuser1'
 ## Update user
 ```sql
 UPDATE users
-SET Password = 'zara2stra2107',
+SET Password = 'sUperSecretP4as$word',
     Uid = 1000,
     Gid = 1000,
     Dir = '/home/ftpdata/ftpuser1'
@@ -106,7 +106,7 @@ WHERE User = 'ftpuser';
 
 ```bash
 UPDATE users
-SET Password = 'zara2stra2107',
+SET Password = 'sUperSecretP4as$word',
     Uid = 1000,
     Gid = 1000,
     Dir = '/home/ftpdata/ftpuser1'
