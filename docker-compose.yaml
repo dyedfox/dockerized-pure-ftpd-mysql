@@ -1,16 +1,16 @@
 services:
   pure-ftpd-mysql:
-    image: pure-ftpd-mysql:latest
+    image: slavko7/pure-ftpd-mysql:latest
     container_name: pure-ftpd-mysql
     network_mode: host
     environment:
       - PUBLIC_IP=127.0.0.1
       - PORT_RANGE=30000:30007
     volumes:
-      - /home/yaroslav/ssl:/etc/ssl/private
-      - /home/yaroslav/ftpdata:/home/ftpdata
-      - /home/yaroslav/ftpdata/uploadscript.sh:/etc/uploadscript.sh
-      - /home/yaroslav/ftpdata/mysql.conf:/etc/pure-ftpd/db/mysql.conf
+      - /home/dyedfox/ssl:/etc/ssl/private
+      - /home/dyedfox/ftpdata:/home/ftpdata
+      - /home/dyedfox/ftpdata/uploadscript.sh:/etc/uploadscript.sh
+      - /home/dyedfox/ftpdata/mysql.conf:/etc/pure-ftpd/db/mysql.conf
     restart: always
     logging:
       driver: syslog
