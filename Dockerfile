@@ -25,5 +25,4 @@ COPY entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
 HEALTHCHECK --interval=2m CMD curl -v -k --ssl ftp://localhost:21 2>&1 | grep -q 'Welcome to Pure-FTPd \[privsep\] \[TLS\]' && exit 0 || exit 1
-
 ENTRYPOINT ["./entrypoint.sh"]
