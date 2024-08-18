@@ -16,6 +16,10 @@ docker run -d \
   --name pure-ftpd-mysql \
   pure-ftpd-mysql:latest
   ```
+
+# Docker compose
+See `docker-compose.yaml`
+
 ## Parameters
   `--network=host` - if omitted, you need to map ports for passive mode like this: `-p 30000-31000:30000-31000`. Can be slow in non-host mode if the port range is large
 
