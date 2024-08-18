@@ -1,0 +1,100 @@
+
+/usr/sbin/pure-ftpd-mysql -l mysql:/etc/pure-ftpd/db/mysql.conf -o -Y 2 -B -P ${PUBLIC_IP} -A -J HIGH -E -p 30000:30059 -O clf:/var/log/pure-ftpd/transfer.log -u 1000 -j && tail -f /var/log/syslog
+
+RUN_ARGS="-o -Y 2 -A -J HIGH -E -j"
+PORT_RANGE="30000:30059"
+
+/usr/sbin/pure-ftpd-mysql -l mysql:/etc/pure-ftpd/db/mysql.conf -B -u 1000 ${RUN_ARGS} -P ${PUBLIC_IP} -p ${PORT_RANGE} -O clf:/var/log/pure-ftpd/transfer.log && tail -f /var/log/syslog
+
+----------
+Yes, you can use the same wildcard certificate (*.example.com) for ftp.example.com.
+
+A wildcard certificate for *.example.com covers all subdomains at the same level. This means it's valid for:
+
+- www.example.com
+- ftp.example.com
+- mail.example.com
+- any other single-level subdomain of example.com
+
+However, it's important to note that this wildcard certificate would not cover:
+
+- example.com (the root domain)
+- sub.subdomain.example.com (multi-level subdomains)
+
+So, you can safely use your *.example.com certificate for ftp.example.com without any issues.
+
+Would you like more information on wildcard certificates or how to set up SSL/TLS for your FTP server?
+
+-
+
+Certificate Google Trust Services
+WE1
+
+example.com
+*.example.com
+
+Options:
+1. Use the same wildcard certificate as for *.example.com
+2. Purchase separate one.
+
+--------
+
+
+resource "aws_iam_user_policy" "ecr" {
+  name = "${local.env_prefix}-secrets-ssl-access-policy"
+  user = aws_iam_user.ftp.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "ecr:GetAuthorizationToken"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage"
+        ]
+        Resource = "arn:aws:ecr:${var.aws_region}:${local.aws_account_id}:repository/${var.ecr_repository_name}"
+      }
+    ]
+  })
+}
+
+
+arn:aws:ecr:region:account-id:repository/repository-name
+
+
+  resource "aws_iam_user_policy" "ecr" {
+      id          = (known after apply)
+      name        = "stage-secrets-ssl-access-policy"
+      name_prefix = (known after apply)
+      policy      = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action   = [
+                          + "ecr:GetAuthorizationToken",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "ecr:GetDownloadUrlForLayer",
+                          + "ecr:BatchGetImage",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "arn:aws:ecr:us-west-2:160614412378:repository/stage-pure-ftpd-mysql"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + user        = "stage-ftp"
+    }
