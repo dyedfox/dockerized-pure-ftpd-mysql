@@ -1,6 +1,10 @@
 # Dockerized Pure-ftpd-MySQL
 Pure-ftpd with MySQL, TLS, Passive mode and upload script option
 
+For pure-ftpd documentation refer to:
+- https://linux.die.net/man/8/pure-ftpd
+- https://www.pureftpd.org/project/pure-ftpd/doc/
+
 # Docker command
 ```bash
 docker run -d \
@@ -27,11 +31,13 @@ See `docker-compose.yaml`
 
   `-e PORT_RANGE="30000:30007` - port range for passive mode
 
+  `-e RUN_ARGS="-o -Y 2 -A -J HIGH -E -j"` - arguments (listed are the default) for pure-ftpd-mysql service. Refer to https://linux.die.net/man/8/pure-ftpd
+
   `-v /home/dyedfox/ssl:/etc/ssl/private` - left side is path to your certificate
 
   `-v /home/dyedfox/ftpdata:/home/ftpdata` - path to host volume for storing the uploaded files
 
-  `-v /home/dyedfox/ftpdata/uploadscript.sh:/etc/uploadscript.sh` - path to the uploadscript
+  `-v /home/dyedfox/ftpdata/uploadscript.sh:/etc/uploadscript.sh` - path to the uploadscript. For more info refer to: https://linux.die.net/man/8/pure-uploadscript
 
   `-v /home/dyedfox/ftpdata/mysql.conf:/etc/pure-ftpd/db/mysql.conf` - path to MySQL configuration file
 
