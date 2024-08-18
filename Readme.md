@@ -18,14 +18,23 @@ docker run -d \
   ```
 ## Parameters
   `--network=host` - if omitted, you need to map ports for passive mode like this: `-p 30000-31000:30000-31000`. Can be slow in non-host mode if the port range is large
+
   `-e PUBLIC_IP="127.0.0.1"` - public IP for passive mode
+
   `-e PORT_RANGE="30000:30007` - port range for passive mode
+
   `-v /home/dyedfox/ssl:/etc/ssl/private` - left side is path to your certificate
+
   `-v /home/dyedfox/ftpdata:/home/ftpdata` - path to host volume for storing the uploaded files
+
   `-v /home/dyedfox/ftpdata/uploadscript.sh:/etc/uploadscript.sh` - path to the uploadscript
+
   `-v /home/dyedfox/ftpdata/mysql.conf:/etc/pure-ftpd/db/mysql.conf` - path to MySQL configuration file
+
   `--restart always` - always restart the containder
+
   `--log-driver syslog` - mapping logging to the host system
+  
   `--name pure-ftpd-mysql` - name of the container
 
 
